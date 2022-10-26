@@ -10,7 +10,9 @@ var fertizeLevel=50;
 var health=50;
 var nearDeath=false;
 
-var timeout
+
+
+var timeout;
 
 function water(){//adds water
   waterLevel= Math.min(waterLevel+25);
@@ -21,8 +23,24 @@ function fertilize(){//adds fertlizer
 }
 
 function trim(){
-  health= Math.min();
+  health= Math.min(health+20, 100);
 }
+
+$("#water-me").on("click", function () {
+  water();
+  $("#water").fadeIn().delay(3000).fadeOut()
+})
+
+$("#feed-me").on("click", function () {
+  fertilize();
+  $("#food").fadeIn().delay(3000).fadeOut()
+})
+
+$("#trim-me").on("click", function () {
+  trim();
+  $("#scissors").fadeIn().delay(2000).fadeOut();
+  $("#trim").fadeOut();
+})
 
 function process(){
   waterLevel = Math.max(0, waterLevel-5);
@@ -48,3 +66,4 @@ function process(){
   var waterTimer = setTimeout(process, 1000)
 }
 process();
+
